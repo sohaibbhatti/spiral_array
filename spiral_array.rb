@@ -8,6 +8,18 @@ class Array
 
   private
 
+  #  Sample ( 3 x 3 )
+  #  1 2 3
+  #  4 5 6 => 1 2 3 6 9 8 7 4 5 6
+  #  7 8 9
+  #
+  #  Sanple ( 5 x 5 )
+  #  1  2  3  4  5
+  #  6  7  8  9  10
+  #  11 12 13 14 15 => 1 2 3 4 5 10 15 20 25 24 23 22 21 16 11 6 7 8 9 14 19 18 17 12 13
+  #  16 17 18 19 20
+  #  21 22 23 24 25
+
   ##
   # Traverses a multidimensional array in an L shape manner from
   # the top left to the bottom right
@@ -25,6 +37,8 @@ class Array
     end
 
     temp_array
+
+   # ulat a, x1, y1+1, x2 - 1, y2 if x2 - x1 > 0
   end
 
   ##
@@ -44,6 +58,8 @@ class Array
     end
 
     temp_array
+
+    straight j, x1+1, y1, x2, y2 - 1 if x2 - x1 > 0
   end
 end
 
