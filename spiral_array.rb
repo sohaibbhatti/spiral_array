@@ -20,7 +20,6 @@ class Array
 
   private
 
-  ##
   # Traverses a multidimensional array in an L shape manner from
   # the top left to the bottom right
   def top_left_to_bottom_right(x1, y1, x2, y2)
@@ -39,20 +38,6 @@ class Array
     @spiral_array
   end
 
-  def recurse_top_left_to_bottom_right(x1, y1, x2, y2)
-    top_left_to_bottom_right x1, y1, x2, y2
-    recurse_bottom_right_to_top_left x1, y1 + 1, x2 - 1, y2 if x2 - x1 > 0
-  end
-
-  def recurse_bottom_right_to_top_left(x1, y1, x2, y2)
-    bottom_right_to_top_left x1, y1, x2, y2
-    recurse_top_left_to_bottom_right x1 + 1, y1, x2, y2 - 1 if x2 - x1 > 0
-  end
-
-  def calculate_recurrance_index(max, min)
-  end
-
-  ##
   # Traverses a multidimensional array in an L shape manner from
   # the bottom right to the top left
   def bottom_right_to_top_left(x1, y1, x2, y2)
@@ -71,10 +56,29 @@ class Array
       @spiral_array << self[j][x1]
     end
 
-    #temp_array
     @spiral_array
+  end
 
-    #straight j, x1+1, y1, x2, y2 - 1 if x2 - x1 > 0
+  # Recurrance call for the top_left_to_bottom_right method.
+  # Invokes the recurrance call for the bottom_right_to_top_left
+  # method. The method would be invoked on a sub array
+  #  1 2 3
+  #  4 5 6 => 4 5
+  #  7 8 9    7 8
+  def recurse_top_left_to_bottom_right(x1, y1, x2, y2)
+    top_left_to_bottom_right x1, y1, x2, y2
+    recurse_bottom_right_to_top_left x1, y1 + 1, x2 - 1, y2 if x2 - x1 > 0
+  end
+
+  # Recurrance call for the bottom_right_to_top_left method.
+  # Invokes the recurrance call for the top_left_to_bottom_right
+  # method. The method would be invoked on a sub array
+  #  1 2 3
+  #  4 5 6 => 4 5 => 5
+  #  7 8 9    7 8
+  def recurse_bottom_right_to_top_left(x1, y1, x2, y2)
+    bottom_right_to_top_left x1, y1, x2, y2
+    recurse_top_left_to_bottom_right x1 + 1, y1, x2, y2 - 1 if x2 - x1 > 0
   end
 end
 
