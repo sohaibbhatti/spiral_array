@@ -41,18 +41,15 @@ class Array
   # Traverses a multidimensional array in an L shape manner from
   # the bottom right to the top left
   def bottom_right_to_top_left(x1, y1, x2, y2)
-    temp_array = []
     @spiral_array ||= []
 
     # Traversing bottom right to bottom left
     (x2).downto(x1).each do |i|
-      temp_array << self[y2][i]
       @spiral_array << self[y2][i]
     end
 
     # Traversing bottom left to top left
     (y2 - 1).downto(y1).each do |j|
-      temp_array << self[j][x1]
       @spiral_array << self[j][x1]
     end
 
